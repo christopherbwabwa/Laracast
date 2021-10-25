@@ -12,9 +12,9 @@ class Post extends Model
 
     protected $with = ['category', 'author'];
     
-    protected $guarded = [];
-
+    //protected $guarded = [];
     //protected $fillable = ['title', 'excerpt', 'body'];
+    //Don't need those because of the model::unguard from AppServiceProvider
 
     public function scopeFilter($query, array $filters)
     {
@@ -39,6 +39,11 @@ class Post extends Model
         );
     }
 
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+    
     public function category()
     {
        return $this->belongsTo(Category::class);
