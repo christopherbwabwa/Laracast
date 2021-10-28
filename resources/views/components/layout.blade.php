@@ -6,10 +6,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/alpinejs/2.8.2/alpine-ie11.min.js"></script>
 <style>
-    html{
+    html {
         scroll-behavior: smooth;
     }
+
 </style>
+
 <body style="font-family: Open Sans, sans-serif">
     <section class="px-6 py-8">
         <nav class="md:flex md:justify-between md:items-center">
@@ -22,30 +24,39 @@
             <div class="mt-8 md:mt-0 flex items-center">
                 @auth
                     <x-dropdown>
-                            <x-slot name="trigger">
+                        <x-slot name="trigger">
 
-                                <button class="text-xs font-bold uppercase">Welcome, {{ Auth::user()->name }}</button>
-                            
-                            </x-slot>
-                            
-                            <x-dropdown-item href="/admin/posts/create"> Dashboard </x-dropdown-item>
-                            <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')"> New Post </x-dropdown-item>
-                            <x-dropdown-item href="#" x-data="{}" @click.prevent="document.querySelector('#logout-form').submit()">Log Out </x-dropdown-item>
+                            <button class="text-xs font-bold uppercase">Welcome, {{ Auth::user()->name }}</button>
 
-                            <form id="logout-form" action="/logout" method="POST" class="hidden">
-                                @csrf
-                            </form>
+                        </x-slot>
+                        @can('admin')
+                            <x-dropdown-item href="/admin/posts" :active="request()->is('admin/posts')"> Dashboard
+                            </x-dropdown-item>
+                            <x-dropdown-item href="/admin/posts/create" :active="request()->is('admin/posts/create')"> New Post
+                            </x-dropdown-item>
+                        @endcan
+
+
+
+
+                        <x-dropdown-item href="#" x-data="{}"
+                            @click.prevent="document.querySelector('#logout-form').submit()">Log Out </x-dropdown-item>
+
+                        <form id="logout-form" action="/logout" method="POST" class="hidden">
+                            @csrf
+                        </form>
 
                     </x-dropdown>
-                    
-                    
+
+
                 @else
                     <a href="/register" class="text-xs font-bold uppercase">Register</a>
                     <a href="/login" class="ml-6 text-xs font-bold uppercase">Login</a>
                 @endauth
-                
 
-                <a href="#newsletter" class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
+
+                <a href="#newsletter"
+                    class="bg-blue-500 ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-5">
                     Subscribe for Updates
                 </a>
             </div>
@@ -53,7 +64,8 @@
 
         {{ $slot }}
 
-        <footer id="newsletter" class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
+        <footer id="newsletter"
+            class="bg-gray-100 border border-black border-opacity-5 rounded-xl text-center py-16 px-10 mt-16">
             <img src="/images/lary-newsletter-icon.svg" alt="" class="mx-auto -mb-6" style="width: 145px;">
             <h5 class="text-3xl">Stay in touch with the latest posts</h5>
             <p class="text-sm mt-3">Promise to keep the inbox clean. No bugs.</p>
@@ -70,23 +82,19 @@
                             </label>
 
                             <div>
-                                <input id="email" 
-                                   name="email" 
-                                   type="text" 
-                                   placeholder="Your email address"
-                                   class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
+                                <input id="email" name="email" type="text" placeholder="Your email address"
+                                    class="lg:bg-transparent py-2 lg:py-0 pl-4 focus-within:outline-none">
 
                                 @error('email')
-                                   <span class="text-xs text-red-500"> 
-                                       {{ $message }} 
-                                   </span>
-                               @enderror
+                                    <span class="text-xs text-red-500">
+                                        {{ $message }}
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
                         <button type="submit"
-                                class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8"
-                        >
+                            class="transition-colors duration-300 bg-blue-500 hover:bg-blue-600 mt-4 lg:mt-0 lg:ml-3 rounded-full text-xs font-semibold text-white uppercase py-3 px-8">
                             Subscribe
                         </button>
                     </form>

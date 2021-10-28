@@ -1,5 +1,6 @@
 @auth
     <x-panel>
+     
         <form method="POST" action="/posts/{{$post->slug}}/comments">
             @csrf
             
@@ -19,10 +20,9 @@
                     <textarea name="body"
                         class="w-full text-xs focus:outline-none focus:ring" 
                         rows="5" 
-                        placeholder=" Quick, thing of something to say!" 
+                        placeholder=" Quick, think of something to say!" 
                         required
-                        >
-                    </textarea> 
+                        ></textarea> 
                     @error('body')
                         <span class="text-xs text-red-500"> 
                             {{ $message }} 
