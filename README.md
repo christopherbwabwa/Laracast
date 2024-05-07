@@ -1,8 +1,6 @@
-![Screenshot of the logo of the application.](/public/images/logo.svg)
+## Laravel blog
 
-## Laracast Blog
-
-**A simple Blog where you can create, edit, update & delete posts.**
+**A simple blog where you can create, edit, update & delete posts.**
 
 **You can also comment posts using the powerful eloquent ORM provided by Laravel.**
 
