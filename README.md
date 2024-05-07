@@ -8,14 +8,12 @@
 
 ## Usage 
 
-> [!NOTE]
+> [!IMPORTANT]
 > First of all, you have to log in if you have already a account or you can also register.
-
 
 ![Screenshot of the login & register buttons.](/public/images/register-or-login.png)
 
-> [!IMPORTANT]
-> Once you are connected, you can comment any post on the site.
+Once you are connected, you can comment any post on the site.
 
 ![Screenshot of the comment on a random post](/public/images/comments.png)
 
@@ -23,7 +21,6 @@ To write a comment you have to be logged in otherwise you can't.
 
 This site was built using [Laravel version 8](https://laravel.com/).
 
-> [!IMPORTANT]
 > When you log in as a administrator you can have more privilege like:
 
 * Create posts.
@@ -58,4 +55,4 @@ Gate::define('admin', function (User $user)
 > [!IMPORTANT]
 > To add post just click to the New post link
 
-## *Have fun:)* ##
+*Have fun:)*
