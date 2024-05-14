@@ -21,15 +21,17 @@ class AdminPostController extends Controller
 
     public function store()
     {
-        
+
         $attributes = array_merge($this->validatePost(),[
-            'user_id' => request()->user()->id(),
+            'user_id' => auth()->id(),
             'thumbnail' => request()->file('thumbnail')->store('thumbnails')
         ]);
 
+       // dd($attributes);
+
         Post::create($attributes);
 
-        return redirect('/');
+        return redirect('/')->with('success', 'New post added!');
     }
 
     public function edit(Post $post)
@@ -38,7 +40,6 @@ class AdminPostController extends Controller
     }
 
     public function update(Post $post)
-
     {
         $attributes = $this->validatePost($post);
 
@@ -67,12 +68,13 @@ class AdminPostController extends Controller
         return request()->validate([
 
             'title' => 'required',
-            'thumbnail' => $post->exists ? ['image'] :['required', 'image'],
-            'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],
-            'excerpt' => 'required',
-            'body' => 'required',
-            'category_id' => ['required', Rule::exists('categories', 'id')],
-            'published_at' => 'required'
+             'thumbnail' => $post->exists ? ['image'] :['required', 'image'],
+             'slug' => ['required', Rule::unique('posts', 'slug')->ignore($post)],
+             'excerpt' => 'required',
+             'body' => 'required',
+             'status' => 'required',
+             'category_id' => ['required', Rule::exists('categories', 'id')],
+             'published_at' => 'date'
         ]);
         
     }

@@ -29,6 +29,10 @@
                 <x-form.error name="category" />
             </x-form.field>
 
+            <x-form.label name="status"/>
+            <x-form.radio name="status" id="draft">Draft</x-form.radio>
+            <x-form.radio name="status" id="published">Published</x-form.radio>
+            <x-form.error name="status" />
 
             <x-form.button> Publish </x-form.button>
         </form>

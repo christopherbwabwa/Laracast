@@ -22,6 +22,11 @@
                                             </div>
                                         </td>
 
+                                        <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                            <span
+                                                class=" @if($post->status == "published") bg-green-500 @else bg-red-500 @endif p-1 rounded-sm text-xs text-white hover:text-green-600"
+                                                >{{ $post->status }}</span>
+                                        </td>
 
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                             <a href="/admin/posts/{{ $post->id }}/edit"
