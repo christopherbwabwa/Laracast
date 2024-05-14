@@ -36,9 +36,14 @@
                     @endforeach
 
                 </select>
-                <x-form.error name="category" />
+                <x-form.error name="category"/>
             </x-form.field>
 
+            <x-form.label name="status"/>
+
+            <x-form.radio name="status" id="draft" :post="$post">Draft</x-form.radio>
+            <x-form.radio name="status" id="published" :post="$post">Published</x-form.radio>
+            <x-form.error name="status" />
 
             <x-form.button> Update </x-form.button>
 
